@@ -1,14 +1,22 @@
 from turtle import Turtle
+
 STARTING_POSITIONS = [(0, 0), (-20, 0), (-40, 0)]
 # default move distance starts is 20, can speed up or slow down by changing this
 move_distance = 20
+
+# directions - east is 0, moves ccw
+RIGHT = 0
+UP = 90
+LEFT = 180
+DOWN = 270
+
 
 class Snake:
 
     def __init__(self):
         self.segments = []
         self.segments = self.create_snake()
-
+        self.head = self.segments[0]
 
     def create_snake(self):
         # creates initial 3 segments, first segment is at 0, 0
@@ -21,8 +29,6 @@ class Snake:
             first_segments.append(rect)
         return first_segments
 
-
-
     def move(self):
         # for seg_num in range(start=len(segments)-1, stop=0, step=-1):
         # range does not allow keyword arguments, but above is logic used
@@ -31,4 +37,23 @@ class Snake:
             new_x = seg_in_front.xcor()
             new_y = seg_in_front.ycor()
             self.segments[seg_num].goto(new_x, new_y)
-        self.segments[0].forward(move_distance)
+        self.head.forward(move_distance)
+
+# do not allow snake to turn onto itself, that would kill it
+# handle turning on itself separately
+    def up(self):
+        # Only move if not turning onto itself
+        if self.head.heading() != DOWN:
+            self.head.setheading(UP)
+
+    def down(self):
+        if self.head.heading() != UP:
+            self.head.setheading(DOWN)
+
+    def right(self):
+        if self.head.heading() != LEFT:
+            self.head.setheading(RIGHT)
+
+    def left(self):
+        if self.head.heading() != RIGHT:
+            self.head.setheading(LEFT)

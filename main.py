@@ -21,13 +21,20 @@ screen.tracer(0)
 # first square at 0, 0
 snake = Snake()
 
+# bind arrow keys to snake-move methods in Snake class
+screen.listen()
+screen.onkey(snake.up, "Up")
+screen.onkey(snake.down, "Down")
+screen.onkey(snake.right, "Right")
+screen.onkey(snake.left, "Left")
+
 is_game_running = True
 # create_snake()
 while is_game_running:
     # Move snake all segments together only after all have new position
     screen.update()
     # delay next update by 0.1 seconds
-    time.sleep(.1)
+    time.sleep(.2)
     # moves snake
     snake.move()
 
