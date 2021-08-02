@@ -1,5 +1,3 @@
-
-
 # TODO Control snake
 # TODO Detect collision with food
 # TODO Create scoreboard
@@ -18,32 +16,10 @@ screen.title("My Snake Game")
 # turn off tracer so we can use update method to refresh positions and redraw
 screen.tracer(0)
 
-# TODO Create snake body
-# 3 squares next to each other 20 pixels each
+# Create snake object using Snake class
+# Initial snake is 3 squares next to each other 20 pixels each
 # first square at 0, 0
-
 snake = Snake()
-
-starting_positions = [(0, 0), (-20, 0), (-40, 0)]
-segments = []
-
-# def create_snake():
-#     for position in starting_positions:
-#         rect = Turtle("square")
-#         rect.color("white")
-#         rect.penup()
-#         rect.goto(position)
-#         segments.append(rect)
-
-# def create_snake():
-#     snake_3 = []
-#     for index in range(0, 3):
-#         rect1 = Turtle("square")
-#         rect1.color("white")
-#         rect1.setx(index*-20)
-#         rect1.sety(0)
-#         snake_3.append(rect1)
-#     return snake_3
 
 is_game_running = True
 # create_snake()
@@ -52,11 +28,9 @@ while is_game_running:
     screen.update()
     # delay next update by 0.1 seconds
     time.sleep(.1)
-
+    # moves snake
     snake.move()
 
-
-    # is_game_running = False
 
 
 
