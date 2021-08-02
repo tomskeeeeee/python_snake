@@ -17,3 +17,12 @@ class Scoreboard(Turtle):
         self.pendown()
         self.write(self.score_label, align="center", font=FONT)
         self.hideturtle()
+
+    def game_over(self):
+        self.score_label = "GAME OVER"
+        self.pencolor("white")
+        self.penup()
+        self.setposition(0, 0)
+        self.pendown()
+        self.write(self.score_label, align="center", font=FONT)
+        self.hideturtle()

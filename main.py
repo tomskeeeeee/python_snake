@@ -1,6 +1,4 @@
-# TODO Control snake
-# TODO Detect collision with food
-# TODO Create scoreboard
+
 # TODO Detect collision with wall
 # TODO Detect collision with tail
 import time
@@ -41,17 +39,32 @@ while is_game_running:
     # Move snake all segments together only after all have new position
     screen.update()
     # delay next update by 0.1 seconds
-    time.sleep(1)
+    time.sleep(.1)
     # moves snake
     snake.move()
     # check if snake "eats" food (collides with food)
     if snake.head.distance(food) <= 15:
         # send food to new random location
         food.new_location()
-        print("You ate the food")
+        # print("You ate the food")
         snake.grow()
         scoreboard.clear()
         scoreboard.write_score()
+    # Detect collision with wall
+    if snake.head.xcor() > 280 or snake.head.xcor() < -280 or snake.head.ycor() > 280 or snake.head.ycor() < -280:
+        print("you hit the wall")
+        scoreboard.game_over()
+        is_game_running = False
+
+    # Detect collision with tail
+    # if head collides with any segment in the tail
+
+    for segment in snake.segments[1:]:
+        # must omit snake-head (element 0) so it doesn't count
+        # snake-head colling with itself
+        if snake.head.distance(segment) < 10:
+            is_game_running = False
+            scoreboard.game_over()
 
 
 
