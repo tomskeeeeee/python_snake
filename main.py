@@ -6,6 +6,7 @@
 import time
 from turtle import Turtle, Screen
 from snake import Snake
+from food import Food
 import random
 
 screen = Screen()
@@ -20,6 +21,8 @@ screen.tracer(0)
 # Initial snake is 3 squares next to each other 20 pixels each
 # first square at 0, 0
 snake = Snake()
+# create food, will be randomly placed
+food = Food()
 
 # bind arrow keys to snake-move methods in Snake class
 screen.listen()
@@ -34,9 +37,15 @@ while is_game_running:
     # Move snake all segments together only after all have new position
     screen.update()
     # delay next update by 0.1 seconds
-    time.sleep(.2)
+    time.sleep(1)
     # moves snake
     snake.move()
+    # check if snake "eats" food (collides with food)
+    if snake.head.distance(food) <= 15:
+        # send food to new random location
+        food.new_location()
+        print("You ate the food")
+        snake.grow()
 
 
 
