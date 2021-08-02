@@ -52,14 +52,8 @@ while is_game_running:
     screen.update()
     # delay next update by 0.1 seconds
     time.sleep(.1)
-    # for seg_num in range(start=len(segments)-1, stop=0, step=-1):
-    # range does not allow keyword arguments, but above is logic used
-    for seg_num in range(len(segments)-1, 0, -1):
-        seg_in_front = segments[seg_num-1]
-        new_x = seg_in_front.xcor()
-        new_y = seg_in_front.ycor()
-        segments[seg_num].goto(new_x, new_y)
-    segments[0].forward(20)
+
+    snake.move()
 
 
     # is_game_running = False

@@ -18,7 +18,9 @@ class Snake:
     def __init__(self):
         self.segments = self.create_snake()
 
-    def snake_move(self):
+    def move(self):
+        # for seg_num in range(start=len(segments)-1, stop=0, step=-1):
+        # range does not allow keyword arguments, but above is logic used
         for seg_num in range(len(self.segments) - 1, 0, -1):
             seg_in_front = self.segments[seg_num - 1]
             new_x = seg_in_front.xcor()
