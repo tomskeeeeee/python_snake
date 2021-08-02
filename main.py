@@ -39,7 +39,7 @@ while is_game_running:
     # Move snake all segments together only after all have new position
     screen.update()
     # delay next update by 0.1 seconds
-    time.sleep(.1)
+    time.sleep(.3)
     # moves snake
     snake.move()
     # check if snake "eats" food (collides with food)
