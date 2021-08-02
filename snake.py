@@ -15,18 +15,15 @@ class Snake:
 
     def __init__(self):
         self.segments = []
-        self.segments = self.create_snake()
+        self.create_snake()
         self.head = self.segments[0]
 
     def create_snake(self):
         # creates initial 3 segments, first segment is at 0, 0
         first_segments = []
         for position in STARTING_POSITIONS:
-            rect = Turtle("square")
-            rect.color("white")
-            rect.penup()
-            rect.goto(position)
-            first_segments.append(rect)
+            self.grow(position)
+
         return first_segments
 
     def move(self):
@@ -58,11 +55,20 @@ class Snake:
         if self.head.heading() != RIGHT:
             self.head.setheading(LEFT)
 
-    def grow(self):
+    def grow(self, position):
         rect = Turtle("square")
         rect.color("white")
         rect.penup()
-        old_x = self.segments[len(self.segments) - 1].xcor()
-        old_y = self.segments[len(self.segments) - 1].ycor()
-        rect.setposition(old_x, old_y)
+        rect.setposition(position)
         self.segments.append(rect)
+
+    def extend(self):
+        self.grow(self.segments[-1].position())
+
+    def reset(self):
+        # move old snakes off the scree
+        for seg in self.segments:
+            seg.goto(1000, 1000)
+        self.segments.clear()
+        self.create_snake()
+        self.head = self.segments[0]

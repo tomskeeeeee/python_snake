@@ -47,14 +47,15 @@ while is_game_running:
         # send food to new random location
         food.new_location()
         # print("You ate the food")
-        snake.grow()
+        snake.extend()
         scoreboard.clear()
-        scoreboard.write_score()
+        scoreboard.update_scoreboard()
     # Detect collision with wall
     if snake.head.xcor() > 280 or snake.head.xcor() < -280 or snake.head.ycor() > 280 or snake.head.ycor() < -280:
         print("you hit the wall")
-        scoreboard.game_over()
-        is_game_running = False
+        scoreboard.reset_scoreboard()
+        snake.reset()
+
 
     # Detect collision with tail
     # if head collides with any segment in the tail
@@ -63,8 +64,10 @@ while is_game_running:
         # must omit snake-head (element 0) so it doesn't count
         # snake-head colling with itself
         if snake.head.distance(segment) < 10:
-            is_game_running = False
-            scoreboard.game_over()
+            scoreboard.reset_scoreboard()
+            snake.reset()
+
+    # is_game_running = False
 
 
 
