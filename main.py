@@ -7,6 +7,7 @@ import time
 from turtle import Turtle, Screen
 from snake import Snake
 from food import Food
+from scoreboard import Scoreboard
 import random
 
 screen = Screen()
@@ -23,6 +24,9 @@ screen.tracer(0)
 snake = Snake()
 # create food, will be randomly placed
 food = Food()
+# create scoreboard, initially shows 0
+scoreboard = Scoreboard()
+
 
 # bind arrow keys to snake-move methods in Snake class
 screen.listen()
@@ -46,6 +50,8 @@ while is_game_running:
         food.new_location()
         print("You ate the food")
         snake.grow()
+        scoreboard.clear()
+        scoreboard.write_score()
 
 
 
